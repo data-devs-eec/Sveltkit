@@ -2,4 +2,4 @@
 	import { Button } from '$lib/components/ui/button';
 </script>
 
-<Button>Click me</Button>
+<a href="/about">Go to About</a>
