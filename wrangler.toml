@@ -1,0 +1,10 @@
+name = "data-devs-web-app"
+account_id = "d5d2ed7b74c4ef7a54bc48c5669a0a36"
+
+main = "./.cloudflare/worker.js"
+site.bucket = "./.cloudflare/public"
+
+build.command = "npm run build"
+
+compatibility_date = "2021-11-12"
+workers_dev = true
