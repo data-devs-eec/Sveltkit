@@ -12,8 +12,8 @@
     </div>
 	<div class="grid w-full max-w-sm items-center gap-1.5">
         <Label for="password">Password</Label>
-        <Input type="password" id="password" placeholder="Password" class="border-red-500" />
-    </div>
+        <Input type="password" id="password" placeholder="Password" class="border-red-500 outline-none" />
+    </div>  
     
     <div class="grid w-full max-w-sm items-center gap-1.5">
         <Button>Submit</Button>
