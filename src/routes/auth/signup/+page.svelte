@@ -1,28 +1,11 @@
 <script lang="ts">
     import type { ActionData } from "./$types";
     import { Input } from '$lib/components/ui/input';
+    import {enhance} from '$lib/form';
     export let form: ActionData;
-
-    function validatePasswords(event: Event) {
-        const formElement = event.currentTarget as HTMLFormElement;
-        const password = formElement.elements.namedItem('password') as HTMLInputElement;
-        const rePassword = formElement.elements.namedItem('rePassword') as HTMLInputElement;
-
-        if (password.value !== rePassword.value) {
-            alert("Passwords do not match");
-            event.preventDefault(); // Prevent form submission
-        } else {
-            formElement.submit(); // Submit the form if passwords match
-        }
-    }
-
-    function handleSubmit(event: Event) {
-        validatePasswords(event); // Validate passwords before submission
-        // Prevent default behavior - this is handled in validatePasswords
-    }
 </script>
 
-<form action="/auth/signup" method="POST" on:submit={handleSubmit}>
+<form action="/auth/signup" method="POST" use:enhance>
     <div class="flex flex-col justify-center items-center min-h-screen gap-10 bg-slate-300">
         <h1 class="text-2xl font-semibold mb-4">Sign up</h1>
 

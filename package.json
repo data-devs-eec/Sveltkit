@@ -39,6 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^5.11.0",
 		"bits-ui": "^0.19.7",
 		"clsx": "^2.1.0",
 		"lucide-svelte": "^0.356.0",
