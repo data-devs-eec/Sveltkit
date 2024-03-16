@@ -1,9 +1,13 @@
 <script lang="ts">
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import CNightMode from '../c_night_mode.svelte';
+	import CTime from './c_time.svelte';
 </script>
 
-<div class="flex flex-row px-4 py-2">
+<div class="flex flex-row justify-between items-center px-4 py-2">
+	<div>
+		<CTime />
+	</div>
 	<CNightMode />
 </div>
 <Separator />
