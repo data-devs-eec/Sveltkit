@@ -3,7 +3,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import CNightMode from '$lib/custom_components/c_night_mode.svelte';
-	import BackGround from '$lib/img/auth_page_background.jpg';
+	import BackGround from '$lib/img/auth_page_background.webp';
 </script>
 
 <div class="flex h-screen flex-row">
