@@ -12,10 +12,5 @@ model User {
   email         String    @unique
   passwordHash  String
   userAuthToken String    @unique
-
 }
 
-model Role {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String @unique
-}
