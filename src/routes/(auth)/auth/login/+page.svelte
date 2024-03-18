@@ -11,7 +11,7 @@
 
 <div class="flex h-screen flex-row">
 	<div class="flex h-full basis-1/2 flex-col">
-		<img src={BackGround} alt="logo" class="h-full w-full object-cover object-center opacity-90" />
+		<img src={BackGround} alt="logo" class="h-full w-full object-cover object-center opacity-80" />
 	</div>
 	<div class="flex w-full basis-1/2 flex-col p-8">
 		<div class="flex flex-row justify-end space-x-4">
