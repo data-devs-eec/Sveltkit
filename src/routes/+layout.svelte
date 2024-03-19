@@ -3,7 +3,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 </script>
 
-<ModeWatcher />
+<ModeWatcher defaultMode="light"/>
 <div>
 	<slot />
 </div>
