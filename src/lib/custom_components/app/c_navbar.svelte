@@ -4,7 +4,7 @@
 	import CTime from './c_time.svelte';
 </script>
 
-<div class="flex flex-row justify-between items-center px-4 py-2">
+<div class="flex flex-row items-center justify-between px-4 py-2">
 	<div>
 		<CTime />
 	</div>

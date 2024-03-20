@@ -5,16 +5,23 @@
 	import * as Popover from '$lib/components/ui/popover';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { cn } from '$lib/utils.js';
+	import { tick } from 'svelte';
 	export let data: { value: string; label: string }[];
-
+	export let width:number = 200;
 	export let value = '';
-	export let selectText:string;
-	export let emptyText:string = "Not Found...";
+	export let selectText: string;
+	export let emptyText: string = 'Not Found...';
 	let open = false;
 	$: selectedValue = data.find((f) => f.value === value)?.label ?? selectText;
 
 	function onSelect(currentValue: string) {
 		value = currentValue;
+	}
+	function closeAndFocusTrigger(triggerId: string) {
+		open = false;
+		tick().then(() => {
+			document.getElementById(triggerId)?.focus();
+		});
 	}
 </script>
 
@@ -25,19 +32,25 @@
 			variant="outline"
 			role="combobox"
 			aria-expanded={open}
-			class="w-[200px] justify-between"
+			class={`w-[${width}px] justify-between`}
 		>
 			{selectedValue}
 			<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 		</Button>
 	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0">
+	<Popover.Content class={`w-[${width}px] p-0`}>
 		<Command.Root>
 			<Command.Input placeholder="Search framework..." />
 			<Command.Empty>{emptyText}</Command.Empty>
 			<Command.Group>
 				{#each data as item}
-					<Command.Item value={item.value} {onSelect}>
+					<Command.Item
+						value={item.value}
+						onSelect={() => {
+							onSelect(item.value);
+							closeAndFocusTrigger(ids.trigger);
+						}}
+					>
 						<Check class={cn('mr-2 h-4 w-4', value !== item.value && 'text-transparent')} />
 						{item.label}
 					</Command.Item>

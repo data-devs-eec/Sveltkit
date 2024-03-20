@@ -17,42 +17,41 @@
 		{
 			icon: LineChart,
 			text: 'Analytics',
-			route: '/app/analytics',
+			route: '/analytics',
 			selected: false
 		},
 		{
 			icon: BotMessageSquare,
 			text: 'Chat',
-			route: '/app/chat',
+			route: '/chat',
 			selected: false
 		},
 		{
 			icon: Bell,
 			text: 'Notifications',
-			route: '/app/notifications',
+			route: '/notifications',
 			selected: false
 		},
 		{
 			icon: ShieldCheck,
 			text: 'Issues',
-			route: '/app/issues',
+			route: '/issues',
 			selected: false
 		},
 		{
 			icon: Settings,
 			text: 'Settings',
-			route: '/app/settings',
+			route: '/settings',
 			selected: false
 		}
 	];
 </script>
 
 <div class="items- flex flex-col space-y-4">
-	
 	{#each sideBarButtons as sideBarButton}
 		<Button
-			href={sideBarButton.route}
-			variant={sideBarButton.route === $page.url.pathname ? 'default' : 'ghost'}
+			href={`/app${sideBarButton.route}`}
+			variant={$page.url.pathname.includes(sideBarButton.route) ? 'default' : 'ghost'}
 			class="w-full justify-start text-xl"
 		>
 			<svelte:component this={sideBarButton.icon} class="mr-4" />
