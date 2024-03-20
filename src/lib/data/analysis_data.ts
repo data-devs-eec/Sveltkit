@@ -25,7 +25,7 @@ const attributeLabels = [
 	'Arrested Count',
 	'Conviction Count'
 ];
-
+const AttributeLabels = [[],[],[],];
 export const Attributes: { value: string; label: string }[] = attributeLabels
 	.sort()
 	.map((label) => {
