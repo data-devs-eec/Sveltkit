@@ -1,36 +1,53 @@
 <script lang="ts">
-	import { type ChartItem, Chart } from 'chart.js/auto';
-	import { onMount } from 'svelte';
-	let canvasElement: ChartItem;
+	import { Chart } from 'chart.js/auto';
+	import { onMount, afterUpdate } from 'svelte';
+	import { formattedData } from '$lib/data/police_db.js';
+  
+	export let selectedStation: string = '';
+	export let selectedCategory: string = '';
+  
+	let canvasElement: HTMLCanvasElement;
 	let chart: Chart;
-	let data = {
-		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // X Axis
-		datasets: [
-			{
-				label: 'No of FIRs filed in each crime category',
-				data: [12, 19, 2, 5, 2, 3], // Y Axis
-				backgroundColor: ['rgba(255, 134,159,0.4)'],
-				borderWidth: 2,
-				borderColor: ['rgba(255, 134, 159, 1)']
-			},
-			{
-				label: 'No of FIRs filed in each crime category',
-				data: [5, 19, 2, 5, 2, 3], // Y Axis
-				backgroundColor: ['rgba(255, 134,159,0.4)'],
-				borderWidth: 2,
-				borderColor: ['rgba(255, 134, 159, 1)']
+  
+	function updateChart() {
+	  if (!selectedStation || !selectedCategory) return;
+  
+	  const selectedData = formattedData[selectedStation][selectedCategory];
+	  
+	  if (!canvasElement || !selectedData) return;
+  
+	  const ctx = canvasElement.getContext('2d');
+	  if (!ctx) return;
+  
+	  if (chart) {
+		chart.destroy();
+	  }
+  
+	  chart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+		  labels: selectedData.map(item => item.label),
+		  datasets: [{
+			label: 'Number of FIRs',
+			data: selectedData.map(item => item.value),
+			backgroundColor: 'rgba(255, 99, 132, 0.2)',
+			borderColor: 'rgba(255, 99, 132, 1)',
+			borderWidth: 2
+		  }]
+		},
+		options: {
+		  scales: {
+			y: {
+			  beginAtZero: true
 			}
-		]
-	};
-
-	onMount(() => {
-		chart = new Chart(canvasElement, {
-			type: 'bar',
-			data: data
-		});
-	});
-</script>
-
-<div class="flex w-3/4 flex-col">
-	<canvas bind:this={canvasElement}> </canvas>
-</div>
+		  }
+		}
+	  });
+	}
+  
+	onMount(updateChart);
+	afterUpdate(updateChart);
+  </script>
+  
+  <canvas bind:this={canvasElement}></canvas>
+  

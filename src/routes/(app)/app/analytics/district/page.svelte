@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { formattedData,Fir_No,IOName } from '$lib/data/police_db.js';
+	import { formattedData } from '$lib/data/police_db.js';
 	import { onMount, afterUpdate } from 'svelte';
 	import CChart from '$lib/custom_components/app/analysis/c_chart.svelte';
 	import CDropdown from '../../../../../lib/custom_components/app/analysis/Dropdown.svelte';
@@ -33,15 +33,6 @@
 		on:select={handleStationSelect}
 	  />
 	</div>
-	<div class="flex justify-between">
-		<div class="rounded-lg border border-gray-300 p-4 w-1/2 mr-2">
-			<h1 class="text-xl font-bold">FirCount: {Fir_No.length}</h1>
-		</div>
-		<div class="rounded-lg border border-gray-300 p-4 w-1/2 ml-2">
-			<h1 class="text-xl font-bold">IO's: {IOName.length}</h1>
-		</div>
-	</div>
-	
 	<CChart {selectedStation} {selectedCategory} />
   </div>
- 
+  
