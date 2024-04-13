@@ -74,7 +74,7 @@
 						</Select.Trigger>
 						<Select.Content>
 							{#each data.districts as district}
-								<Select.Item value={district.id}>{district}</Select.Item>
+								<Select.Item value={district.id}>{district.label}</Select.Item>
 							{/each}
 						</Select.Content>
 					</Select.Root>
@@ -98,9 +98,9 @@
 							<Select.Value placeholder="Select Designation..." />
 						</Select.Trigger>
 						<Select.Content>
-							<Select.Item value="doctor">Doctor</Select.Item>
-							<Select.Item value="nurse">Nurse</Select.Item>
-							<Select.Item value="admin">Admin</Select.Item>
+							{#each data.designations as designation}
+								<Select.Item value={designation.id}>{designation.label}</Select.Item>
+							{/each}
 						</Select.Content>
 					</Select.Root>
 					<input type="text" {...attrs} hidden bind:value={$formData.designation} />

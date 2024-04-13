@@ -6,10 +6,13 @@ import type { District } from '@prisma/client';
 
 export const load = (async (event) => {
 	const form = await superValidate(zod(signUpFormSchema));
-	const districts = await event.fetch('/api/districts');
+	const districts = await event.fetch('/api/district');
+	const designations = await event.fetch('/api/designation');
 	const districtsJson: District[] = await districts.json();
+	const designationsJson = await designations.json();
 	return {
 		form,
-		districts: districtsJson
+		districts: districtsJson,
+		designations: designationsJson
 	};
 }) satisfies PageLoad;

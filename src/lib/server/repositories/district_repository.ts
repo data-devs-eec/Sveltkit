@@ -9,6 +9,15 @@ class DistrictRepository {
 	async getDistricts() {
 		return this.prismaClient.district.findMany();
 	}
+	async createDistrict({ name, label }: { name: string; label: string }) {
+		const district = await this.prismaClient.district.create({
+			data: {
+				name,
+				label
+			}
+		});
+		return district;
+	}
 }
 
 export const districtRepository = new DistrictRepository(prismaClient);
