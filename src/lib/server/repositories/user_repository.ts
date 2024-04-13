@@ -45,7 +45,7 @@ class UserRepository {
 				passwordHash: userData.passwordHash,
 				designationId: userData.designationId,
 				districtId: userData.districtId,
-				roleId: "USER"
+				roleId: userData.roleId
 			}
 		});
 		return user;

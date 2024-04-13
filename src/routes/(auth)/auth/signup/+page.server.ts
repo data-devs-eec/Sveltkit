@@ -37,14 +37,17 @@ export const actions: Actions = {
 			phone: parseInt(formData.phone),
 			passwordHash: hashedPassword,
 			districtId: formData.district,
-			roleId: 'USER',
+			roleId: '661a888b891486130ebc2138',
 			designationId: formData.designation
 		});
+		
 		const session = await sessionRepository.createSession({ userId: user.id });
 		const sessionCookie = sessionRepository.createSessionCookie(session);
 		cookies.set(sessionCookie.name, sessionCookie.value, {
 			...sessionCookie.attributes
 		});
+		console.log(sessionCookie);
+		
 		return redirect(302, '/app');
 	}
 };

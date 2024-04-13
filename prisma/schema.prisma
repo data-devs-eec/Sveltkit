@@ -12,7 +12,7 @@ model User {
   name          String
   email         String      @unique
   phone         Int         @unique
-  roleId        String      @db.ObjectId
+  roleId        String      @db.ObjectId 
   role          Role        @relation(fields: [roleId], references: [id])
   districtId    String      @db.ObjectId
   district      District    @relation(fields: [districtId], references: [id])

@@ -17,11 +17,10 @@ export const load = (async (event) => {
 
 export const actions: Actions = {
 	default: async ({ request }) => {
-		const form = await superValidate<Infer<typeof loginFormSchema>, MessageType>(
+		const form = await superValidate(
 			request,
 			zod(loginFormSchema)
 		);
-		await sleep(2000)
 		if (!form.valid) {
 			return fail(400, { form });
 		}
