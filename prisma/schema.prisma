@@ -1,18 +1,72 @@
 datasource db {
-    provider = "mongodb"
-    url = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 model User {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
-    name String
-    email String @unique
-    passworHash String 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    lastLogin DateTime?
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String      @unique
+  phone         Int         @unique
+  roleId        String      @db.ObjectId
+  role          Role        @relation(fields: [roleId], references: [id])
+  districtId    String      @db.ObjectId
+  district      District    @relation(fields: [districtId], references: [id])
+  designationId String      @db.ObjectId
+  designation   Designation @relation(fields: [designationId], references: [id])
+  passwordHash  String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  sessions      Session[]
+}
+
+model Role {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String     @unique
+  label        String
+  permissionId String     @db.ObjectId
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  users        User[]
+}
+
+model Permission {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Role[]
+}
+
+model District {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+}
+
+model Session {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Designation {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
 }

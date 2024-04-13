@@ -4,9 +4,10 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import CNightMode from '$lib/custom_components/c_night_mode.svelte';
 	import BackGround from '$lib/img/auth_page_background.webp';
-	import { superForm } from 'sveltekit-superforms';
+	import SuperDebug, { superForm } from 'sveltekit-superforms';
+	import { LoaderCircle } from 'lucide-svelte';
 	export let data;
-	const { form, enhance, errors, message, constraints } = superForm(data.form);
+	const { form, errors, message, constraints, enhance, delayed } = superForm(data.form, {});
 </script>
 
 <div class="flex h-screen flex-row">
@@ -19,9 +20,9 @@
 			<CNightMode />
 		</div>
 		<form
+			use:enhance
 			method="post"
 			class="flex h-full flex-col items-center justify-center space-y-6 rounded p-8"
-			use:enhance
 		>
 			<div class="text-center text-2xl font-bold">Login</div>
 			<div class="text-center text-sm text-slate-400">Gain insights that drive success.</div>
@@ -46,12 +47,25 @@
 					<span class="text-sm text-red-500">{$errors.password}</span>
 				{/if}
 			</div>
-			<Button variant="link" class="text-start">Forget Password ?</Button>
-			<Button type="submit" variant="default">Login</Button>
+			<div class="flex flex-col">
+				<Button variant="link" class="text-start">Forget Password ?</Button>
+				<Button variant="link" class="text-start" href="/auth/signup"
+					>Don't have an account ? Sign Up</Button
+				>
+			</div>
+			<Button disabled={$delayed} type="submit" variant="default">
+				{#if $delayed === true}
+					<LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
+					Please wait
+				{:else}
+					Login
+				{/if}
+			</Button>
 		</form>
+		<SuperDebug data={$form} />
 		{#if $message}
 			<div>
-				{$message}
+				{$message.status}: {$message.detail}
 			</div>
 		{/if}
 	</div>
