@@ -36,3 +36,14 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+🔍 Key Features:
+- Hierarchical dashboard structure
+- Real-time data integration
+- User-friendly design
+- Role-based access
+- Geospatial data utilization
+- Analytical representation
+- Gamification for officer engagement
+  Analytics:
+    Within the analytics section, officers have access to detailed insights categorized by various parameters such as police station, district, village, crime category, and timelines.        These analytics serve as invaluable tools for strategic decision-making, enabling law enforcement agencies to allocate resources effectively and respond proactively to emerging           trends or challenges.
+Complementing these functionalities are dynamic visualization tools that make data interpretation interactive and engaging. These visualizations offer a deeper understanding of trends and patterns, facilitating data-driven decision-making and promoting transparency within the organization.
