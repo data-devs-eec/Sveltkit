@@ -11,7 +11,7 @@
 		{
 			icon: LayoutDashboard,
 			text: 'Dashboard',
-			route: '/app',
+			route: '/',
 			selected: true
 		},
 		{
@@ -22,7 +22,7 @@
 		},
 		{
 			icon: BotMessageSquare,
-			text: 'Chat',
+			text: 'Nova Chat',
 			route: '/chat',
 			selected: false
 		},

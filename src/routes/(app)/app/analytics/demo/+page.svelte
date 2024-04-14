@@ -46,7 +46,7 @@
 		<CDropdown selectText="Select X Axis" data={Attributes} />
 		<CDropdown selectText="Select Y Axis" data={[]} />
 	</div>
-	<div class="w-3/4">
-		<canvas bind:this={canvasElement}> </canvas>
+	<div class="w-1/4">
+		<canvas class="w-1/2" bind:this={canvasElement}> </canvas>
 	</div>
 </div>

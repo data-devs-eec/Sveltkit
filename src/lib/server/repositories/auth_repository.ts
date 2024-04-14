@@ -7,7 +7,7 @@ class AuthRepository {
 		return hashedPassword;
 	}
 	async verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-		const isValid = await this.argon2id.verify(password, hashedPassword);
+		const isValid = await this.argon2id.verify(hashedPassword, password);
 		return isValid;
 	}
 }

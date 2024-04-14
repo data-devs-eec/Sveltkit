@@ -75,6 +75,14 @@ class SessionRepository {
 		}
 		return { user, session, valid: true };
 	}
+
+	async invalidateSession(sessionId: string) {
+		await this.prismaClient.session.delete({
+			where: {
+				id: sessionId
+			}
+		});
+	}
 	createSessionCookie(session: Session) {
 		const cookie: CookieType = {
 			name: this.sessionCookieName,

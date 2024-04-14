@@ -6,8 +6,15 @@
 	import BackGround from '$lib/img/auth_page_background.webp';
 	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import { LoaderCircle } from 'lucide-svelte';
+	import { goto } from '$app/navigation';
 	export let data;
-	const { form, errors, message, constraints, enhance, delayed } = superForm(data.form, {});
+	const { form, errors, message, constraints, enhance, delayed } = superForm(data.form, {
+		onResult({ result }) {
+			if (result.type === 'redirect') {
+				goto(result.location);
+			}
+		}
+	});
 </script>
 
 <div class="flex h-screen flex-row">
@@ -62,7 +69,6 @@
 				{/if}
 			</Button>
 		</form>
-		<SuperDebug data={$form} />
 		{#if $message}
 			<div>
 				{$message.status}: {$message.detail}

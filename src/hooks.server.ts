@@ -32,8 +32,9 @@ const authHandler: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-const routeHandler: Handle = async ({ event, resolve }) => { 
-    if (event.url.pathname.startsWith('/app') && event.locals.user === undefined) {
+const routeHandler: Handle = async ({ event, resolve }) => {
+	
+	if (event.url.pathname.startsWith('/app') && event.locals.user === undefined) {
 		return redirect(302, '/auth/login');
 	}
 	if (event.url.pathname.startsWith('/auth') && event.locals.user) {
@@ -43,5 +44,5 @@ const routeHandler: Handle = async ({ event, resolve }) => {
 		return json({ error: 'Unauthorized' }, { status: 401 });
 	}
 	return resolve(event);
- }
+};
 export const handle: Handle = sequence(authHandler, routeHandler);
