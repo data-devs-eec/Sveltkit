@@ -33,7 +33,9 @@ const authHandler: Handle = async ({ event, resolve }) => {
 };
 
 const routeHandler: Handle = async ({ event, resolve }) => {
-	
+	if (event.url.pathname === '/') {
+		return redirect(302, '/app');
+	}
 	if (event.url.pathname.startsWith('/app') && event.locals.user === undefined) {
 		return redirect(302, '/auth/login');
 	}
